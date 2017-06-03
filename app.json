@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "page/my/my",
+    "page/bind/bind",
+    "page/list/list"
+  ],
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+   
+      {
+      "pagePath": "page/search/search",
+      "iconPath": "images/search.png",
+      "selectedIconPath": "images/searchs.png",
+      "text": "通讯录"
+    },
+    {
+      "pagePath":  "page/my/my",
+      "iconPath": "images/my.png",
+      "selectedIconPath": "images/mys.png",
+      "text": "我"
+    }
+    ]
+  },
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "临县人生", 
+    "navigationBarBackgroundColor": "#f8f8f8",
+    "backgroundColor": "#f8f8f8",
+    "enablePullDownRefresh":false
+    
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}
