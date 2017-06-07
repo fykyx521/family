@@ -12,48 +12,61 @@ App({
         // console.log(options.scene,options.shareTicket);
         this.globalData.scene=options.scene;
         this.globalData.shareTicket = options.shareTicket;
-        wx.getShareInfo({
-          shareTicket: this.globalData.shareTicket,
-          success:function(data) 
-          {
-             let evdata=data.encryptedData;
-             let iv=data.iv; 
-             let msg=data.errMsg;     
-             console.log('adasdasd');  
-             wx.request({
-               url: 'https://cloud.bmob.cn/2401ae597b8dfe23/groupid',
-               method:"POST",   
-              //  dataType:'string',
-               data: { "uid":"b0d3d3922d","iv":iv,"evdata":evdata},
-               header:{
-                 "X-Bmob-Application-Id":'a613d7850199a11fc929202507958aa4',
-                 "X-Bmob-REST-API":'d631329383f295f3130773b5c35fa062',
-                 'content-type':'application/json'
-               },  
-               success:function(data)
-               {
-                  console.log(data);
-               }
-             })
-             
-          }
-          
-        });
-
         
     },
     onShow: function () {
          console.log('appshow');
-         
-
-
     },
+    getShare(ticket)
+    {
+       return new Promise(function(resolve,reject){
+         console.log(ticket+'assssssss');
+         wx.getShareInfo({
+           shareTicket: ticket,
+           success: function (res) {
+              resolve(res);
+           },
+           fail(error) {
+              reject(error);
+           },
+         });
+       });
+    },
+    getGroupId(userid,res)
+    {
+      return new Promise(function (resolve, reject) {
+        Bmob.Cloud.run('groupid', { "uid": userid, 'evdata': res.encryptedData,'iv':res.iv }, {
+          success: function (result) {
+             resolve(result);
+          },
+          error: function (error) {
+             reject(error);
+          }
+         });
+      });
+    },
+    groupId(ticket)
+    {
+       let user=Bmob.User.current();
+       return this.getShare(ticket)
+              .then((res)=>{
+                  return this.getGroupId(user.id,res)
+              }).then(result=>{
+                 return new Promise((resolve, reject) => resolve(JSON.parse(result).openGId));
+              });
+    },
+
     onHide: function () {
         console.log('App Hide')
+    },
+    isFromGroup()
+    {
+       return this.globalData.scene==1044;
     },
     globalData: {
         hasLogin: false,
         scene:0,
+        isFromGroup:false,
         shareTicket:''
     }
 });

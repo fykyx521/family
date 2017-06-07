@@ -1,0 +1,23 @@
+<form bindsubmit="formsubmit" bindreset="formReset">
+ <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">群名</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" value="{{group.grouname}}" readonly placeholder="输入一个群名称吧" name='groupname' />
+        </view>
+      
+      </view>
+    
+  
+      <view class="weui-cell weui-cell_switch">
+        <view class="weui-cell__bd">同意群内成员访问你的电话号码</view>
+        <view class="weui-cell__ft">
+          <switch checked />
+        </view>
+      </view>
+   
+      <button type="primary"  formType="submit">绑定</button>
+ </view>  
+ </form>

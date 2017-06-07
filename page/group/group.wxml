@@ -1,0 +1,24 @@
+
+<form bindsubmit="formsubmit" bindreset="formReset">
+ <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">群名</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" readonly placeholder="输入一个群名称吧" name='phone' />
+        </view>
+      
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">姓名:</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="text" name='name'
+          placeholder="请输入姓名" />
+        </view>
+      </view>
+      <button type="primary"  formType="submit">绑定</button>
+ </view>     
+ </form>

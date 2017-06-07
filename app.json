@@ -2,7 +2,9 @@
   "pages": [
     "page/my/my",
     "page/bind/bind",
-    "page/list/list"
+    "page/list/list",
+    "page/group/group",
+    "page/onshare/onshare"
   ],
   "tabBar": {
     "color": "#7A7E83",
@@ -12,7 +14,7 @@
     "list": [
    
       {
-      "pagePath": "page/search/search",
+      "pagePath": "page/group/group",
       "iconPath": "images/search.png",
       "selectedIconPath": "images/searchs.png",
       "text": "通讯录"
