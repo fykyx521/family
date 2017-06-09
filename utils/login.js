@@ -1,11 +1,88 @@
+
+
+import Bmob from './bmob.js';
+
+
 function login()
+{
+
+    return dologin();
+
+}  
+
+
+/***
+ *  微信登录
+ */
+function dologin()
+{
+  // return wxlogin().then((res) => loginOrRegister(res));
+
+  return wxcheckSession()
+   .then(
+     (result)=>{
+        return Promise.resolve(Bmob.User.current());
+        
+     },
+     (res)=>{
+       return wxlogin().then((res) => loginOrRegister(res));
+   });
+   
+}
+
+/**
+ *  登录或注册
+ * 
+ */
+function loginOrRegister(res) {
+
+   let user1 = new Bmob.User();//开始注册用户
+   return user1.loginWithWeapp(res.code);
+}
+
+
+function wxcheckSession()
+{
+  return new Promise(function (resolve,reject){
+    wx.checkSession({
+      success: function (res) {
+          resolve(res);
+      },
+      fail: function (res) {
+          reject(res);
+      },
+      complete: function (res) { },
+    });
+  });
+}
+function wxlogin()
+{
+   return new Promise(function(resolve,reject){
+      wx.login({
+        success: function(res) {
+            resolve(res);
+        },
+        fail: function(res) {
+             reject(res);
+        },
+        complete: function(res) {
+
+        },
+      });
+   });
+  
+}
+
+
+
+function oldlogin()
 {
     var Bmob=require('bmob.js')
     wx.login({
 
         success: function (res) {
-          var user1 = new Bmob.User();//开始注册用户
-          user1.loginWithWeapp(res.code).then(function (user) {
+           var user1 = new Bmob.User();//开始注册用户
+           user1.loginWithWeapp(res.code).then(function (user) {
             var openid = user.get("authData").weapp.openid;
             console.log(user, 'user', user.id, res);
             if (user.get("nickName")) {
@@ -22,7 +99,7 @@ function login()
                 },
                 error: function (result, error) { 
                   console.log("查询失败");
-                }
+                }  
               });
               //保存用户其他信息，比如昵称头像之类的
               wx.getUserInfo({
@@ -60,6 +137,4 @@ function login()
     
 }
 
-module.exports = {
-  login: login
-}
+export default login;

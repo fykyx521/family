@@ -2,60 +2,50 @@ var Bmob = require('utils/bmob.js');
 import login from 'utils/login.js';
 import cputil from 'utils/cputil.js';
 import api from 'utils/api.js';
+import Role from 'utils/role.js';
+import { groupId, getOrCreateGroup, createOrInsertUG} from 'utils/group.js';
 App({
   onLaunch: function (options) {
         
         Bmob.initialize("a613d7850199a11fc929202507958aa4", "d631329383f295f3130773b5c35fa062");
         
-        login.login();
+        
         let that=this;
         // console.log(options.scene,options.shareTicket);
         this.globalData.scene=options.scene;
         this.globalData.shareTicket = options.shareTicket;
-        
+
+        this.init(options.shareTicket);
     },
+
+    init(ticket)
+    { 
+       let cuser=null;
+       login().then(user => {
+         cuser=user;
+        if (this.isFromGroup()) { 
+          return groupId(ticket, user.id);//获取群ID
+        } 
+       })
+        .then((openGid) => {
+           return getOrCreateGroup(openGid);
+        }) 
+        .then((group)=>{
+          console.log(group);
+          //  let user = Bmob.Object.createWithoutData("_User", cuser.id);
+           return createOrInsertUG(group,cuser);
+           
+
+        }).then((model)=>{
+           console.log('save scuc');
+           console.log(model);
+        })
+    },
+    
     onShow: function () {
          console.log('appshow');
     },
-    getShare(ticket)
-    {
-       return new Promise(function(resolve,reject){
-         console.log(ticket+'assssssss');
-         wx.getShareInfo({
-           shareTicket: ticket,
-           success: function (res) {
-              resolve(res);
-           },
-           fail(error) {
-              reject(error);
-           },
-         });
-       });
-    },
-    getGroupId(userid,res)
-    {
-      return new Promise(function (resolve, reject) {
-        Bmob.Cloud.run('groupid', { "uid": userid, 'evdata': res.encryptedData,'iv':res.iv }, {
-          success: function (result) {
-             resolve(result);
-          },
-          error: function (error) {
-             reject(error);
-          }
-         });
-      });
-    },
-    groupId(ticket)
-    {
-       let user=Bmob.User.current();
-       return this.getShare(ticket)
-              .then((res)=>{
-                  return this.getGroupId(user.id,res)
-              }).then(result=>{
-                 return new Promise((resolve, reject) => resolve(JSON.parse(result).openGId));
-              });
-    },
-
+    
     onHide: function () {
         console.log('App Hide')
     },

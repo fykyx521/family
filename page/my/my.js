@@ -1,5 +1,6 @@
 import { groupList} from '../../utils/group.js';
 import Bmob from '../../utils/bmob.js';
+import { getGrouplist } from '../../utils/group.js';
 let app=getApp();
 Page({
   data: {
@@ -9,8 +10,19 @@ Page({
   },
   onLoad() {
     wx.showShareMenu({
-      withShareTicket:true
+      withShareTicket:true,
+      success:function(ticket)
+      {
+         
+      }
     });
+
+    // let groupid = options.groupoid;
+    getGrouplist('GCeYK0acImH5zL6MpbgjDdpvkUZA').then((results) => {
+      console.log('dasadasdasd33333333');
+      console.log(results[0].get('user').get('mobilePhoneNumber'));
+      console.log('dasadasdasd4444444444');
+    })
 
     if (app.isFromGroup()) {
       //  app.groupId().then(groupid=>{

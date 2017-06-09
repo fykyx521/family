@@ -16,6 +16,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) { 
+
+    wx.showShareMenu({
+      withShareTicket: true,
+      success: function (ticket) {
+        console.log(ticket);
+        console.log(ticket);
+      }
+    });
      console.log(options.ticket);
      app.globalData.ticket=options.ticket;
      app.groupId(options.ticket)

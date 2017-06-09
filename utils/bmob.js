@@ -5237,7 +5237,7 @@
             */
             _linkWith: function _linkWith(provider, data) {
                 var _this = this;
-
+               
                 var authType;
                 if (_.isString(provider)) {
                     authType = provider;
@@ -5245,12 +5245,16 @@
                 } else {
                     authType = provider.getAuthType();
                 }
+                
                 if (data) {
                     var authData = this.get('authData') || {};
                     authData[authType] = data;
                     this.set('authData', authData);
 
                     var promise = new Bmob.Promise();
+                    // console.log('provider----start');
+                    // console.log(authData);
+                    // console.log('provider----end');     
                     this.save({
                         'authData': authData
                     }, newOptions).then(
@@ -5259,6 +5263,8 @@
                             promise.resolve(model);
                         }
                         );
+
+                   
 
 
                     return promise._thenRunCallbacks({});
@@ -5296,6 +5302,8 @@
                         var platform = "weapp";
                         var user = Bmob.Object._create("_User");
                         user._linkWith(platform, authData).then(function (resp) {
+                          console.log('response');
+                           console.log(resp);
                             promise.resolve(resp);
                         }, function (error) {
                             promise.reject(error);

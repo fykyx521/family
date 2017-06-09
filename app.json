@@ -14,14 +14,14 @@
     "list": [
    
       {
-      "pagePath": "page/group/group",
+      "pagePath": "page/list/list",
       "iconPath": "images/search.png",
       "selectedIconPath": "images/searchs.png",
       "text": "通讯录"
     },
     {
       "pagePath":  "page/my/my",
-      "iconPath": "images/my.png",
+      "iconPath": "images/my.png", 
       "selectedIconPath": "images/mys.png",
       "text": "我"
     }
