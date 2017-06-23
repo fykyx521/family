@@ -19,9 +19,8 @@ Page({
 
     wx.showShareMenu({
       withShareTicket: true,
-      success: function (ticket) {
-        console.log(ticket);
-        console.log(ticket);
+      success: function (res) {
+       
       }
     });
      console.log(options.ticket);

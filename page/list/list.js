@@ -1,5 +1,6 @@
 // page/list/list.js
-import { getGrouplist } from '../../utils/group.js';
+import DB from '../../utils/db.js';
+
 
 Page({
 
@@ -7,20 +8,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+      list:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     let groupid=options.groupoid;
-     getGrouplist('GCeYK0acImH5zL6MpbgjDdpvkUZA').then((results)=>{
-        console.log('dasadasdasd');
-        console.log(results[0].get('user').get('mobilePhoneNumber'));
+    //  let groupid=options.groupoid;
+     DB.table('user_group')
+     .where('groupoid', '=','e1f6640ca4')
+     .list().then(res=>{
+         console.log(res);
+         this.setData({ 
+             list:res.data.results
+         })
      })
+    //  api.cloud('list').then(results=>{
+    //     console.log(results);
+    //  })
   },
-
+ 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

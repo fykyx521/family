@@ -11,35 +11,26 @@ Page({
   onLoad() {
     wx.showShareMenu({
       withShareTicket:true,
-      success:function(ticket)
+      success:function(res)
       {
          
       }
     });
 
     // let groupid = options.groupoid;
-    getGrouplist('GCeYK0acImH5zL6MpbgjDdpvkUZA').then((results) => {
-      console.log('dasadasdasd33333333');
-      console.log(results[0].get('user').get('mobilePhoneNumber'));
-      console.log('dasadasdasd4444444444');
-    })
+  
 
-    if (app.isFromGroup()) {
-      //  app.groupId().then(groupid=>{
-          
-      //    groupList(groupid).then(results=>{
-      //         console.log("sdfsdfddd"+results);
-      //      })
-      //  });   
-    }
-    let that = this;
-    let user=Bmob.User.current();
-    this.setData({
-       nickName: user.get('nickName'),
-       phone:user.get('mobilePhoneNumber'),
-       avatarUrl: user.get('userPic')  
+    // if (app.isFromGroup()) {
+     
+    // }
+    // let that = this;
+    // let user=Bmob.User.current();
+    // this.setData({
+    //    nickName: user.get('nickName'),
+    //    phone:user.get('mobilePhoneNumber'),
+    //    avatarUrl: user.get('userPic')  
 
-    });
+    // });
   },
   onShareAppMessage: function () {
     return {
@@ -50,9 +41,6 @@ Page({
          wx.navigateTo({
            url: '/page/onshare/onshare?ticket='+ticket,
          });
-        
-        
-
       },
       fail: function (res) {
         // 转发失败

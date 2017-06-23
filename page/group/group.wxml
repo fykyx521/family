@@ -1,24 +1,20 @@
-
-<form bindsubmit="formsubmit" bindreset="formReset">
  <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-          <view class="weui-label">群名</view>
-        </view>
-        <view class="weui-cell__bd">
-          <input class="weui-input" type="number" readonly placeholder="输入一个群名称吧" name='phone' />
-        </view>
-      
-      </view>
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-          <view class="weui-label">姓名:</view>
-        </view>
-        <view class="weui-cell__bd">
-          <input class="weui-input" type="text" name='name'
-          placeholder="请输入姓名" />
-        </view>
-      </view>
-      <button type="primary"  formType="submit">绑定</button>
- </view>     
- </form>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                </view>
+                <view class="weui-cell__bd">樊永康</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access">
+                   15513855060
+                </view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                </view>
+                <view class="weui-cell__bd">刘旭艳</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access">
+                     18635597037
+                </view>
+            </navigator>
+</view>
