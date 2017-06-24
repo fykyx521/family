@@ -14,11 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     let groupid=options.groupoid;
-     getGrouplist('GCeYK0acImH5zL6MpbgjDdpvkUZA').then((results)=>{
-        console.log('dasadasdasd');
-        console.log(results[0].get('user').get('mobilePhoneNumber'));
-     })
+     console.log('user2'+getApp().user())
   },
 
   /**

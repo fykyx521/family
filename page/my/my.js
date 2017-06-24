@@ -9,6 +9,8 @@ Page({
     phone:''
   },
   onLoad() {
+    
+    console.log('user:'+getApp().user());
     wx.showShareMenu({
       withShareTicket:true,
       success:function(ticket)

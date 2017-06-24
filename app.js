@@ -4,6 +4,7 @@ import cputil from 'utils/cputil.js';
 import api from 'utils/api.js';
 import Role from 'utils/role.js';
 import { groupId, getOrCreateGroup, createOrInsertUG} from 'utils/group.js';
+import user from 'utils/user.js';
 App({
   onLaunch: function (options) {
         
@@ -23,8 +24,9 @@ App({
        let cuser=null;
        login().then(user => {
          cuser=user;
+         console.log('login'+user);
         if (this.isFromGroup()) { 
-          return groupId(ticket, user.id);//获取群ID
+           return groupId(ticket, user.id);//获取群ID
         } 
        })
         .then((openGid) => {
@@ -52,6 +54,10 @@ App({
     isFromGroup()
     {
        return this.globalData.scene==1044;
+    },
+    user()
+    {
+      return user;
     },
     globalData: {
         hasLogin: false,

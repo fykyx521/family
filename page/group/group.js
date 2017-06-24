@@ -1,4 +1,5 @@
 // page/group/group.js
+//单个群用户列表
 import Bmob from '../../utils/bmob.js';
 let app = getApp();
 Page({
@@ -7,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    isFromGroup:false
   },
 
   /**
@@ -15,9 +16,20 @@ Page({
    */
   onLoad: function (options) {
      //如果来自群
+
+
      if(app.isFromGroup()){
-        app.groupId();
+        // app.groupId();
      }
+     
+     let user=app.user();
+     if(user.hasPhone())
+     {
+        
+     }
+
+      
+
   },
 
   /**

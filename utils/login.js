@@ -16,7 +16,7 @@ function login()
  */
 function dologin()
 {
-  // return wxlogin().then((res) => loginOrRegister(res));
+    return wxlogin().then((res) => loginOrRegister(res));
 
   return wxcheckSession()
    .then(
@@ -90,7 +90,7 @@ function oldlogin()
               console.log(user.get("nickName"), 'res.get("nickName")');
               //更新openid
               wx.setStorageSync('openid', openid)
-            } else {//注册成功的情况  
+            } else {//注册成功的情况   
               var u = Bmob.Object.extend("_User");
               var query = new Bmob.Query(u);
               query.get(user.id, {
