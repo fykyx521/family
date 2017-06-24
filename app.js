@@ -16,11 +16,16 @@ App({
         this.globalData.scene=options.scene;
         this.globalData.shareTicket = options.shareTicket;
 
-        this.init(options.shareTicket);
+        // this.init(options.shareTicket);
+        // api.query('user_group').find().then(results=>{  
+        //     console.log('group');
+        //     console.log(results);    
+        // })
     },
 
-    init(ticket)
+    init(ticket)  
     { 
+        
        let cuser=null;
        login().then(user => {
          cuser=user;

@@ -25,7 +25,7 @@ function del(modelname,objid)
     });
     //  return query.delete()
 }
-function delsafe(modelname,objid)
+function delsafe(modelname,objid) 
 {
      let delObj=Bmob.Object.extend(modelname);
      var query = new Bmob.Query(delObj);
@@ -41,11 +41,16 @@ function query(modelname,where)
    var query = new Bmob.Query(Obj);
    return query;
 }
+function cloud(yunname,data)
+{
+   return Bmob.Cloud.run(yunname,data);
+}
 
 export default {
     currentUser,
     createObj,
     del,
     delsafe,
-    query
+    query,
+    cloud
 }

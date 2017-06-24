@@ -98,12 +98,12 @@ function getGroupId(userid, res)
     Bmob.Cloud.run('groupid', { "uid": userid, 'evdata': res.encryptedData, 'iv': res.iv }, {
       success: function (result) {
         resolve(result);
-      },
+      }, 
       error: function (error) {
         reject(error);
       }
-    });
-  });
+    }); 
+  }); 
 }
 export function groupId(ticket,userId) {
   // let user = Bmob.User.current();
@@ -114,5 +114,6 @@ export function groupId(ticket,userId) {
       return new Promise((resolve, reject) => resolve(JSON.parse(result).openGId));
     });
 }
+
 
 
