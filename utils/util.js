@@ -1,21 +1,36 @@
-function formatTime(date) {
-  var year = date.getFullYear()
-  var month = date.getMonth() + 1
-  var day = date.getDate()
-
-  var hour = date.getHours()
-  var minute = date.getMinutes()
-  var second = date.getSeconds()
 
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+function dbrequest()
+{
+
 }
 
-function formatNumber(n) {
-  n = n.toString()
-  return n[1] ? n : '0' + n
+export function cloud(cloudname,params)
+{
+    return new Promise((resolve,reject)=>{
+      wx.request({
+        url: 'https://api.bmob.cn/1/functions/' + cloudname,
+        data: params,
+        header: {
+          'X-Bmob-Application-Id':'a613d7850199a11fc929202507958aa4',
+          'X-Bmob-REST-API-Key':'d631329383f295f3130773b5c35fa062',
+          'Content-Type':'application/json'
+        },
+        method: 'post',
+        dataType: 'json',
+        success: function (res) {   
+            resolve(res);
+        },
+        fail: function (res) {
+            reject(res);
+        },
+        complete: function (res) {
+
+        },
+      })
+
+
+    });
+     
 }
 
-module.exports = {
-  formatTime: formatTime
-}
