@@ -1,10 +1,10 @@
 <!--page/list/list.wxml-->
-<text>首页列表</text>
+
  <view class="weui-cells weui-cells_after-title">
             <navigator url="/page/group/group" wx:for="{{list}}" wx:for-index="objectId" wx:for-item="item"
              class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 
-                <view class="weui-cell__bd">{{item.groupname}}</view>
+                <view class="weui-cell__bd">亲戚聊天群</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access">
                    20人
                 </view>

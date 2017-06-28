@@ -28,6 +28,12 @@ export default class DB {
          return this;
       }
 
+      point(pointername)
+      {
+         this.query.point(pointername);
+         return this;
+      }
+
       list()
       {
           let data=this.query.toQueryData();
@@ -100,6 +106,7 @@ class Query
       this.limit=1000;
       this.skip=0;
       this.orderquery=[];
+      this.include=[];//
    }
 
    where(column,option,value)
@@ -158,6 +165,13 @@ class Query
       return this;
     }
 
+    point(pointername) {
+      this.include.push(pointername);
+      // this.query.withPointer(pointername, args);
+      return this;
+    }
+
+
     toQueryData()
     {
         let data=[];
@@ -165,6 +179,11 @@ class Query
         data.limit=this.limit;
         data.skip=this.skip;
         data.order = this.orderquery.join(',');
+        if(this.include.length>0)
+        {
+           data.include = this.include.join('.');
+        }
+        
         return data;
     }
 

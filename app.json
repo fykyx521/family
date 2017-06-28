@@ -27,7 +27,7 @@
   },
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "临县人生", 
+    "navigationBarTitleText": "群电话本", 
     "navigationBarBackgroundColor": "#f8f8f8",
     "backgroundColor": "#f8f8f8",
     "enablePullDownRefresh":false

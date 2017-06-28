@@ -10,9 +10,12 @@ App({
         this.globalData.scene=options.scene;
         this.globalData.shareTicket = options.shareTicket;
         
-        User.login().then(rep=>{
-           console.log(rep);
-        });
+        
+        User.current().then(user=>{
+           console.log(user); 
+
+        })
+
         // this.init(options.shareTicket);
         // api.query('user_group').find().then(results=>{  
         //     console.log('group');
@@ -56,6 +59,11 @@ App({
     isFromGroup()
     {
        return this.globalData.scene==1044;
+    },
+
+    user()
+    {
+       return ''; 
     },
     
     globalData: {

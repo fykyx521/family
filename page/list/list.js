@@ -15,11 +15,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     console.log('user2'+getApp().user())
+    //  console.log('user2'+getApp().user())
     //  let groupid=options.groupoid;
      DB.table('user_group')
-     .where('groupoid', '=','e1f6640ca4')
-     .list().then(res=>{
+      //  .where('groupoid', '=','8e16b3486b') 
+     .point('group')
+     .point('user') 
+     .list().then(res=>{ 
          console.log(res);
          this.setData({ 
              list:res.data.results
@@ -34,7 +36,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+      
   },
 
   /**
@@ -76,6 +78,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+      
   }
-})
+});
